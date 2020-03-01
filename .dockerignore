@@ -1,0 +1,12 @@
+.git
+.mypy_cache
+.pytest_cache
+.coverage
+.cache
+**/*.pyc
+**/__pycache__
+.env
+docker/Dockerfile
+ci
+celerybeat.pid
+celerybeat-schedule
