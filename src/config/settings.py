@@ -57,17 +57,7 @@ STATICFILES_FINDERS = (
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = env("MEDIA_ROOT", default="/project/media")
-#
-# AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME", default=None)
-# if AWS_STORAGE_BUCKET_NAME is not None:
-#     INSTALLED_APPS += ("storages",)
-#     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-#     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-#     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID", default=None)
-#     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY", default=None)
-#     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME", default="eu-west-1")
-#     S3_USE_SIGV4 = True
-#     AWS_QUERYSTRING_AUTH = False
+
 
 # --- TEMPLATES ---
 TEMPLATES = [
@@ -92,18 +82,18 @@ TEMPLATES = [
 
 # --- REST FRAMEWORK ---
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "NON_FIELD_ERRORS_KEY": "errors",
 }
 
 
 # --- AUTH ---
-SIMPLE_JWT = {
-    "AUTH_HEADER_TYPES": ("JWT",),
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-}
+# SIMPLE_JWT = {
+#     "AUTH_HEADER_TYPES": ("JWT",),
+#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [

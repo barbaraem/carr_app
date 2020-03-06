@@ -63,7 +63,7 @@ def import_process(file_name):
         errors.append(reg_errors)
 
     if errors:
-        return errors
+        return HttpResponse(errors, status=status.HTTP_406_NOT_ACCEPTABLE)
 
     db_departments = Department.objects.filter(short_name__in=department_names).in_bulk(field_name="short_name")
 
@@ -74,6 +74,7 @@ def import_process(file_name):
         Car.objects.bulk_create(cars.values())
     except Exception as e:
         return HttpResponse(e, status=status.HTTP_400_BAD_REQUEST)
+
     return HttpResponse("Your file has been successfully uploaded", status=status.HTTP_200_OK)
 
 
