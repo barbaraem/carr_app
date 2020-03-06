@@ -4,10 +4,6 @@ from datetime import timedelta
 from django.core.exceptions import ImproperlyConfigured
 
 import environ
-import sentry_sdk
-from sentry_sdk.integrations.celery import CeleryIntegration
-from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.logging import LoggingIntegration
 
 
 env = environ.Env()
@@ -29,9 +25,12 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.sites",
     "django.contrib.staticfiles",
+    "import_export",
     "rest_framework",
     "config",
-    "example_app",
+    "departments",
+    "cars",
+
 )
 
 MIDDLEWARE = (
@@ -94,9 +93,6 @@ TEMPLATES = [
 # --- REST FRAMEWORK ---
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "NON_FIELD_ERRORS_KEY": "errors",
 }
@@ -174,3 +170,5 @@ CACHES = {
         default="redis://redis:6379/1?client_class=django_redis.client.DefaultClient"
     )
 }
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
